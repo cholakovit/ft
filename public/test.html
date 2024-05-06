@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://www.ft.com/__origami/service/build/v3/bundles/css?components=o-grid@^6.0.0,o-colors@^6.0.8,o-typography@^7.0.2,o-table@^9.0.2&brand=master&system_code=origami"
+    />
+
+    <script src="https://www.ft.com/__origami/service/build/v3/bundles/js?components=o-table@^9.0.2,o-autoinit@^3.0.0&system_code=origami"></script>
+    <title>First Origami Page</title>
+    <style>
+        .positive { color: #a2be2b; }
+        .negative { color: #ed8283; }
+
+        .markets-data-wrapper {
+          font-family: MetricWeb, sans-serif;
+          font-size: 18px;
+          line-height: 16px;
+          font-weight: 600;
+          background-color: #262a33;
+          height: 20px;
+          width: 100%;
+          padding: 10px;
+          color: #fff;
+        }
+
+        .markets-data {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .markets-data__item {
+            margin-right: 20px;
+        }
+        .markets-data__item-link {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body class="o-colors-page-background">
+<div class="n-layout__row n-layout__row--header">
+    <div class="n-layout__header-before">
+        <h1>Financial Times</h1>
+        <div class="markets-data-wrapper js-markets-data">
+            <div class="markets-data" data-trackable="header | markets data" id="dataContainer">
+                <!-- List items will be dynamically generated here -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="o-grid-container o-typography-wrapper">
+    <!-- Rest of your HTML content -->
+</div>
+
+<script>
+    // Fetch data from the endpoint
+    fetch('http://localhost:3001/data')
+        .then(response => response.json())
+        .then(data => {
+            // Extract required information from the data
+            const basicInfo = data.items.map(item => ({
+                name: item.basic.name.replace(/ index$/i, ''),
+                change1WeekPercent: item.quote.change1WeekPercent.toFixed(2),
+                className: item.quote.change1WeekPercent < 0 ? 'negative' : 'positive'
+            }));
+            
+            // Create HTML elements dynamically to display the data
+            const dataContainer = document.getElementById('dataContainer');
+            basicInfo.forEach(info => {
+              const li = document.createElement('li');
+              li.classList.add('markets-data__item');
+              
+              const a = document.createElement('a');
+              a.href = '#';
+              a.classList.add('markets-data__item-link');
+              
+              const spanChange = document.createElement('span');
+              spanChange.textContent = `${info.name} `;
+              
+              const spanPercent = document.createElement('span');
+              spanPercent.textContent = `${info.change1WeekPercent}%`;
+              spanPercent.classList.add('markets-data__item-percent');
+              spanPercent.classList.add(info.className === 'positive' ? 'positive' : 'negative');
+              
+              spanChange.appendChild(spanPercent);
+              a.appendChild(spanChange);
+              li.appendChild(a);
+              dataContainer.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+</script>
+</body>
+</html>

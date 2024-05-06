@@ -1,0 +1,39 @@
+/* SkeletonLoader.css */
+.skeleton-loader {
+  margin: 5px 5px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #262a33;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-name {
+  width: 200px;
+  height: 10px;
+  background-color: #6d6d6d;
+  border-radius: 4px;
+  margin: 5px 5px;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Add the animation effect */
+.skeleton-loader::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -150%; /* Start from the left */
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(to right, transparent 0%, #262a33 50%, transparent 100%);
+  animation: load 1.5s infinite; /* Loop the animation */
+}
+
+@keyframes load {
+  to {
+    left: 100%;
+  }
+}
+

@@ -1,0 +1,42 @@
+{
+  "name": "ft",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "server": "json-server --watch src/db/db.json --port 3001",
+    "test": "vitest",
+    "test:ui": "vitest ui"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.32.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.5.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "json-server": "^1.0.0-alpha.23",
+    "ts-jest": "^29.1.2",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0",
+    "vitest": "^1.5.3"
+  },
+  "peerDependencies": {
+    "@financial-times/o-colors": "^6.6.4",
+    "@financial-times/o-grid": "^6.1.8",
+    "@financial-times/o-table": "^9.3.4",
+    "@financial-times/o-typography": "^7.6.2"
+  }
+}

@@ -1,0 +1,25 @@
+
+.exchangeBar {
+  background-color: #262a33;
+  color: #fff;
+}
+
+.redError {
+  color: red;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 5px;
+}
+
+ul li {  
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+ul li span span {
+  margin: 0 10px;
+}
+
