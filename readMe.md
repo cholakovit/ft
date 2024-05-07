@@ -6,6 +6,7 @@ npm run server
 npm run dev
 
 To run tests:
+
 npm run test
 
 The app is done with react and in public/test.html we have a simple pure js version
