@@ -1,5 +1,8 @@
-To start the project you need to run in cli: \n
-npm run server \n
+To start the project you need to run in cli:
+
+
+npm run server
+
 npm run dev
 
 To run tests:
